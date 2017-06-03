@@ -6,7 +6,7 @@ I found myself wanting to generate large tables of the contents of the [Dragon's
 
 * Python 3.5+ (maybe earlier versions will work, but I've only tested with 3.5.)
 * The [requests](http://docs.python-requests.org/) Python library.
-** `pip install requests`
+  * `pip install requests`
 
 ## downloader.py
 

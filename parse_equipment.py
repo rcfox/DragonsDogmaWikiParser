@@ -151,12 +151,12 @@ def build_weapon_category_table(items):
 
 def build_armor_category_table(items):
     # Key -> Rendered Text, in the order the columns will appear in the table.
-    columns = [('name', 'Name'), ('def', 'Defense'),
-               ('mdef', 'Magick Defense'), ('pierce', 'Piercing Resist'),
-               ('strike', 'Striking Resist'), ('stagger', 'Stagger Resist'),
-               ('knockdown', 'Knockdown Resist'), ('element', 'Elemental Resist'),
-               ('debil', 'Debilitation Resist'), ('weight', 'Weight'),
-               ('bonus', 'Bonus')]
+    columns = [('name', 'Name<br/><br/>'), ('def', 'Defense<br/><br/>'),
+               ('mdef', 'Magick<br/>Defense<br/>'), ('pierce', 'Piercing<br/>Resist<br/>'),
+               ('strike', 'Striking<br/>Resist<br/>'), ('stagger', 'Stagger<br/>Resist<br/>'),
+               ('knockdown', 'Knockdown<br/>Resist<br/>'), ('element', 'Elemental<br/>Resist<br/>'),
+               ('debil', 'Debilitation<br/>Resist<br/>'), ('weight', 'Weight<br/><br/>'),
+               ('bonus', 'Bonus<br/><br/>')]
     # Armor in each table are ordered by the gold-rarified defense.
     items.sort(key=lambda item: int(item['stats'][-1]['def']), reverse=True)
     return build_tables(items, columns)
@@ -179,7 +179,7 @@ def build_tables(items, columns):
 
 
 def build_table(key_mapping, rows):
-    table = ['{| class="wikitable-sortable sortable" style="border-collapse:collapse; font-size:90%; text-align:center;" cellpadding="3"']
+    table = ['{| class="wikitable-sortable sortable" style="border-collapse:collapse; border:1px solid darkslategray; font-size:85%; text-align:center;" cellpadding="3" border="1"']
     header_sep = '\n! class="txtbg1" style="text-align: center;" | '
     header_row = header_sep + header_sep.join(text for key, text in key_mapping)
     table.append(header_row)
@@ -190,7 +190,7 @@ def build_table(key_mapping, rows):
     for row in rows:
         row_data = []
         for key, text in key_mapping:
-            comment = ' <!-- %s -->' % text
+            comment = ' <!-- %s -->' % text.replace('<br/>', ' ').strip()
             cell_data = html.unescape(row[key]).replace('\n', ' ').replace('&nbsp;', ' ')
             row_data.append(cell_sep + cell_data + comment)
         table.append(row_sep + '\n'.join(row_data))

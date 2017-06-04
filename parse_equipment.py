@@ -296,8 +296,8 @@ def build_table(key_mapping, rows):
 
 def build_element_table(element):
     rows = []
-    for key, value in element.items():
-        rows.append('\n|-\n ! %s || %s' % (ELEMENT_ICONS[key], value))
+    for key, value in sorted(element.items()):
+        rows.append('\n|-\n! %s \n| %s' % (ELEMENT_ICONS[key], value))
     return '\n{| ' + ' '.join(rows) + ' \n|}'
 
 
